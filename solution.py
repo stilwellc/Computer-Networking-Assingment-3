@@ -16,42 +16,37 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
-    clientSocket.recv(1024).decode()
+    recv
 
     # Send MAIL FROM command and print server response.
     mailFrom = "MAIL FROM: " + email
     clientSocket.send(mailFrom.encode())
-    clientSocket.recv(1024).decode()
+    recv
 
     # Send RCPT TO command and print server response.
     rcptTo = "RCPT TO: " + email
-    clientSocket.send(rcptTo.encode()) 
-    clientSocket.recv(1024).decode()
-
-
+    clientSocket.send(rcptTo.encode())
+    recv
+    
     # Send DATA command and print server response.
     data = "DATA \r\n"
     clientSocket.send(data.encode())
-    clientSocket.recv(1024).decode()
-
-
+    recv
+    
     # Send message data.
     messageSubject = "Subject: Test Test Test \r\n\r\n"
     clientSocket.send(messageSubject.encode())
     clientSocket.send(msg.encode())
     clientSocket.send(endmsg.encode())
-
-    clientSocket.recv(1024).decode()
-
-
+    recv
+    
     # Message ends with a single period.
     #TODO
 
     # Send QUIT command and get server response.
     quit = "QUIT \r\n"
     clientSocket.send(quit.encode())
-    clientSocket.recv(1024).decode()
-
+    recv
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
